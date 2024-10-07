@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <title>dashboard</title>
+    <link rel="icon" href="aset/" type="image/x-icon">
+    <title>Dashboard</title>
 </head>
 <body>
     @yield('konten')
 </body>
-</html>
+</html>`
