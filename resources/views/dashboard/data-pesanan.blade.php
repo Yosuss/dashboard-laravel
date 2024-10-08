@@ -40,7 +40,7 @@
                 <div id="nav-data" class="nav-data grid grid-cols-5 gap-2 mb-2">
                     <h1 class="font-bold border-2 py-1">id_pesanan</h1>
                     <h1 class="font-bold border-2 py-1">tanggal pesanan</h1>
-                    <h1 class="font-bold border-2 py-1">total_pesanan</h1>
+                    <h1 class="font-bold border-2 py-1">total   pesanan</h1>
                     <h1 class="font-bold border-2 py-1">edit</h1>
                     <h1 class="font-bold border-2 py-1">hapus</h1>
                 </div>
