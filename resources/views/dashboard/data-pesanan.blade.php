@@ -45,14 +45,22 @@
                     <h1 class="font-bold border-2 py-1">hapus</h1>
                 </div>
                 
+                @foreach ($pesanan as $item)
                 <div id="data" class="data grid grid-cols-5 gap-2 mb-2">
-                    
-                    <h1 class="border-2">1</h1>
-                    <h1 class="border-2">01-01-2024</h1>
-                    <h1 class="border-2">200</h1>
+                    <h1 class="border-2">{{ $item->id_pesanan }}</h1>
+                    <h1 class="border-2">{{ $item->tanggal_pesanan }}</h1>
+                    <h1 class="border-2">{{ $item->total_pesanan }}</h1>
                     <a href="" class="bg-blue-500 hover:bg-blue-700 text-white font-bold shadow px-3 py-1 rounded-lg"><button type="submit" id="edit">edit</button></a>
-                    <button type="reset" id="hapus" class="bg-red-500 hover:bg-red-600 text-white font-bold shadow px-3 py-1 rounded-lg">hapus</button>
+                    {{-- <button type="reset" id="hapus" class="bg-red-500 hover:bg-red-600 text-white font-bold shadow px-3 py-1 rounded-lg">hapus</button> --}}
+                    <form action="{{ route('data_pesanan.hapus', $item->id_pesanan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesanan ini?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold shadow px-3 py-1 rounded-lg">
+                            Hapus Pesanan
+                        </button>
+                    </form>
                 </div> 
+                @endforeach
             <!-- </div> -->
         </form>
         <!-- Dashboard field end -->

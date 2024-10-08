@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('data-pesanan', function (Blueprint $table) {
+        Schema::create('data_pesanan', function (Blueprint $table) {
             $table->id('id_pesanan'); // Kolom ID pesanan
             $table->date('tanggal_pesanan'); // Kolom tanggal pesanan
             $table->decimal('total_pesanan', 10, 2); // Kolom total pesanan dengan 10 digit dan 2 desimal
@@ -26,6 +26,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('data-pesanan');
+        Schema::dropIfExists('data_pesanan');
     }
 };
