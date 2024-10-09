@@ -61,10 +61,10 @@
                     </form>
                 </div> 
                 @endforeach
-            <!-- </div> -->
-        </form>
-        <!-- Dashboard field end -->
-    </div>
+                <!-- </div> -->
+            </form>
+            <!-- Dashboard field end -->
+        </div>
     <!-- Main Dashboard end -->
 </div>
 @endsection
