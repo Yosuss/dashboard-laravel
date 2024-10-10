@@ -42,36 +42,43 @@
                 <button class="bg-green-400 hover:bg-green-700 shadow font-bold text-white px-4 py-1 rounded-lg"><a
                         href="./tambah/tambah.html">tambah</a></button>
             </div>
-            <form action="" class="data-pesanan text-center border-2 items-center gap-2 mx-4 p-2 bg-white">
-                <div id="nav-data" class="nav-data grid grid-cols-5 gap-2 mb-2">
-                    <div class="font-bold border-2 py-1">id_pesanan</div>
-                    <div class="font-bold border-2 py-1">tanggal pesanan</div>
-                    <div class="font-bold border-2 py-1">total pesanan</div>
-                    <div class="font-bold border-2 py-1">edit</div>
-                    <div class="font-bold border-2 py-1">hapus</div>
-                </div>
-
-                @foreach ($pesanan as $item)
-                    <div id="data" class="data grid grid-cols-5 gap-2 mb-2">
-                        <div class="border-2">{{ $item->id_pesanan }}</div>
-                        <div class="border-2">{{ $item->tanggal_pesanan }}</div>
-                        <div class="border-2">{{ $item->total_pesanan }}</div>
-                        <a href=""
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold shadow px-3 py-1 rounded-lg text-center">
-                            Edit
-                        </a>
-                        <form action="{{ route('data_pesanan.hapus', $item->id_pesanan) }}" method="POST"
-                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesanan ini?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="bg-red-500 hover:bg-red-600 text-white font-bold shadow px-3 py-1 rounded-lg text-center">
-                                Hapus Pesanan
-                            </button>
-                        </form>
-                    </div>
-                @endforeach
-            </form>
+            <div class="form p-4">
+                <table action="" class="data-pesanan text-center border-2 w-full">
+                    <thead id="nav-data" class="nav-data">
+                        <th class="font-bold border-2 py-1">id_pesanan</th>
+                        <th class="font-bold border-2 py-1">tanggal pesanan</th>
+                        <th class="font-bold border-2 py-1">total pesanan</th>
+                        <th colspan="2" class="font-bold border-2 py-1">Aksi</th>
+                    </thead>
+    
+                    @foreach ($pesanan as $item)
+                        <tbody id="data" class="data">
+                            <td class="border-2">{{ $item->id_pesanan }}</td>
+                            <td class="border-2">{{ $item->tanggal_pesanan }}</td>
+                            <td class="border-2">{{ $item->total_pesanan }}</td>
+                            <td class="flex">
+                                <div class="w-1/2">
+                                    <button
+                                        class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-lg font-semibold w-full">
+                                        edit
+                                    </button>
+                                </div>
+                                <div class="w-1/2">
+                                    <form action="{{ route('data_pesanan.hapus', $item->id_pesanan) }}" method="POST"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesanan ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg font-semibold w-full">
+                                            Hapus Pesanan
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tbody>
+                    @endforeach
+                </table>
+            </div>
             <!-- Dashboard field end -->
         </div>
         <!-- Main Dashboard end -->
