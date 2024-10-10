@@ -32,6 +32,12 @@ class dataPesananController extends Controller
             'total_pesanan' => 'required',
         ]);
 
+        // simpan data ( simple )
+        // $data = new data_pesanan();
+        // $data->tanggal_pesanan = $request->tanggal_pesanan;
+        // $data->total_pesanan = $request->total_pesanan;
+        // $data->save();
+
         // Simpan ke model DataPesanan
         $data = ([
             'tanggal_pesanan' => $request->tanggal_pesanan,
@@ -57,15 +63,20 @@ class dataPesananController extends Controller
             'subject' => 'required',
         ]);
 
+        // update data ( simple )
+        // $data = new data_pesanan();
+        // $data->tanggal_pesanan = $request->tanggal_pesanan;
+        // $data->total_pesanan = $request->total_pesanan;
+        // $data->update();
+
         $pesanan = data_pesanan::findOrFail($id);
         try {
             $pesanan->tanggal_pesanan = $request->input('tanggal_pesanan');
             $pesanan->total_pesanan = $request->input('total_pesanan');
             $pesanan->save();
-                return redirect()->route('data-pesanan');
+            return redirect()->route('data-pesanan');
         } catch (\Exception $e) {
             return redirect()->route('data-pesanan')->withErrors('Gagal mengupdate data.');
         }
     }
-
 }

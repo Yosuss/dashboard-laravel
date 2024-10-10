@@ -109,7 +109,7 @@
                             <td class="border-2">{{ $item->total_pesanan }}</td>
                             <td class="flex">
                                 <div class="w-1/2">
-                                    <form action="{{ route('data-pesanan.edit', ['id' => $item->id_pesanan]) }}">
+                                    <form action="{{ route('data-pesanan.edit',$item->id_pesanan) }}">
                                         <button id="openModal-edit"
                                             class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-lg font-semibold w-full">
                                             edit
@@ -117,7 +117,7 @@
                                     </form>
 
                                     <!-- Modal -->
-                                    <div id="editModal{{ $item->id_contact }}" class="fixed z-10 inset-0 overflow-y-auto hidden">
+                                    <div id="editModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
                                         <div class="flex items-center justify-center min-h-screen">
                                             <!-- Background overlay -->
                                             <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -132,6 +132,7 @@
                                                     <form action="{{ route('data-pesanan.update', $item->id_pesanan) }}" method="POST"
                                                         class="">
                                                         @csrf
+                                                        @method('PUT')
                                                         <div class="mb-4">
                                                             <label for="tanggal_pesanan"
                                                                 class="block text-xl font-medium text-gray-700">Tanggal
