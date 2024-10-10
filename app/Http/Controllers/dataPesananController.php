@@ -12,7 +12,7 @@ class dataPesananController extends Controller
     //
     public function index()
     {
-        $pesanan = data_pesanan::paginate(5);
+        $pesanan = data_pesanan::all();
         return view('dashboard.data-pesanan', compact('pesanan'));
     }
 
