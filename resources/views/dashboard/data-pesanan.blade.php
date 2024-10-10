@@ -109,12 +109,15 @@
                             <td class="border-2">{{ $item->total_pesanan }}</td>
                             <td class="flex">
                                 <div class="w-1/2">
-                                    <button id="openModal-edit"
-                                        class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-lg font-semibold w-full">
-                                        edit
-                                    </button>
+                                    <form action="{{ route('data-pesanan.edit', ['id' => $item->id_pesanan]) }}">
+                                        <button id="openModal-edit"
+                                            class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-lg font-semibold w-full">
+                                            edit
+                                        </button>
+                                    </form>
+
                                     <!-- Modal -->
-                                    <div id="editModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+                                    <div id="editModal{{ $item->id_contact }}" class="fixed z-10 inset-0 overflow-y-auto hidden">
                                         <div class="flex items-center justify-center min-h-screen">
                                             <!-- Background overlay -->
                                             <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -122,11 +125,11 @@
                                             </div>
                                             <!-- Modal content -->
                                             <div
-                                                class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+                                                class="bg-white rounded-lg text-start overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
                                                 <div class="bg-white p-6 xl justify-center">
                                                     <h2 class="font-bold text-3xl mb-4">edit Data</h2>
                                                     <!-- Form dalam modal -->
-                                                    <form action="{{ route('data-pesanan.edit', $item->id_pesanan) }}" method="POST"
+                                                    <form action="{{ route('data-pesanan.update', $item->id_pesanan) }}" method="POST"
                                                         class="">
                                                         @csrf
                                                         <div class="mb-4">
@@ -136,7 +139,7 @@
                                                             <input type="date" name="tanggal_pesanan"
                                                                 id="tanggal_pesanan"
                                                                 class="mt-1 block w-full py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xl"
-                                                                required {{$item->tanggal_pesanan}}>
+                                                                required value="{{$item->tanggal_pesanan}}">
                                                         </div>
                                                         <div class="mb-4">
                                                             <label for="total_pesanan"
@@ -144,7 +147,7 @@
                                                                 Pesanan</label>
                                                             <input type="number" name="total_pesanan" id="total_pesanan"
                                                                 class="mt-1 block w-full py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                                required {{$item->total_pesanan}}>
+                                                                required value="{{$item->total_pesanan}}">
                                                         </div>
                                                         <div class="flex justify-end">
                                                             <button type="button" id="closeModal-edit"

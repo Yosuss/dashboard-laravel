@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\data_pesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rules\Unique;
 
 class dataPesananController extends Controller
 {
@@ -44,7 +43,29 @@ class dataPesananController extends Controller
         return redirect()->route('data-pesanan')->with('success', 'Pesanan berhasil ditambahkan');
     }
 
-    public function edit(Request $request, $id){
-        
+    public function edit(Request $request, $id)
+    {
+        $pesanan = data_pesanan::findOrFail($id);
+        return view('dashboard.data-pesanan', compact('pesanan'));
     }
+
+    public function update(Request $request, $id)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'subject' => 'required',
+        ]);
+
+        $pesanan = data_pesanan::findOrFail($id);
+        try {
+            $pesanan->tanggal_pesanan = $request->input('tanggal_pesanan');
+            $pesanan->total_pesanan = $request->input('total_pesanan');
+            $pesanan->save();
+                return redirect()->route('data-pesanan');
+        } catch (\Exception $e) {
+            return redirect()->route('data-pesanan')->withErrors('Gagal mengupdate data.');
+        }
+    }
+
 }
