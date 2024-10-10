@@ -38,10 +38,13 @@ class dataPesananController extends Controller
             'tanggal_pesanan' => $request->tanggal_pesanan,
             'total_pesanan' => $request->total_pesanan,
         ]);
-
         DB::table('data_pesanan')->insert($data);
 
         // Redirect kembali ke halaman pesanan dengan pesan sukses
         return redirect()->route('data-pesanan')->with('success', 'Pesanan berhasil ditambahkan');
+    }
+
+    public function edit(Request $request, $id){
+        
     }
 }

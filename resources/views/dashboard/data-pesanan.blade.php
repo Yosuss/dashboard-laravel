@@ -40,14 +40,13 @@
             <!-- Dashboard field -->
             <!-- Tombol untuk memunculkan modal -->
             <div class="tambah mx-4 my-2">
-                <button id="openModal"
+                <button id="openModal-tambah"
                     class="bg-green-400 hover:bg-green-700 shadow font-bold text-white px-4 py-1 rounded-lg">
                     Tambah
                 </button>
             </div>
-
             <!-- Modal -->
-            <div id="myModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+            <div id="tambahModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
                 <div class="flex items-center justify-center min-h-screen">
                     <!-- Background overlay -->
                     <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -76,7 +75,7 @@
                                         required>
                                 </div>
                                 <div class="flex justify-end">
-                                    <button type="button" id="closeModal"
+                                    <button type="button" id="closeModal-tambah"
                                         class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg mr-2">
                                         Close
                                     </button>
@@ -110,10 +109,59 @@
                             <td class="border-2">{{ $item->total_pesanan }}</td>
                             <td class="flex">
                                 <div class="w-1/2">
-                                    <button
+                                    <button id="openModal-edit"
                                         class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-lg font-semibold w-full">
                                         edit
                                     </button>
+                                    <!-- Modal -->
+                                    <div id="editModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+                                        <div class="flex items-center justify-center min-h-screen">
+                                            <!-- Background overlay -->
+                                            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                            </div>
+                                            <!-- Modal content -->
+                                            <div
+                                                class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+                                                <div class="bg-white p-6 xl justify-center">
+                                                    <h2 class="font-bold text-3xl mb-4">edit Data</h2>
+                                                    <!-- Form dalam modal -->
+                                                    <form action="{{ route('data-pesanan.edit', $item->id_pesanan) }}" method="POST"
+                                                        class="">
+                                                        @csrf
+                                                        <div class="mb-4">
+                                                            <label for="tanggal_pesanan"
+                                                                class="block text-xl font-medium text-gray-700">Tanggal
+                                                                Pesanan</label>
+                                                            <input type="date" name="tanggal_pesanan"
+                                                                id="tanggal_pesanan"
+                                                                class="mt-1 block w-full py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xl"
+                                                                required {{$item->tanggal_pesanan}}>
+                                                        </div>
+                                                        <div class="mb-4">
+                                                            <label for="total_pesanan"
+                                                                class="block text-xl font-medium text-gray-700">Total
+                                                                Pesanan</label>
+                                                            <input type="number" name="total_pesanan" id="total_pesanan"
+                                                                class="mt-1 block w-full py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                                required {{$item->total_pesanan}}>
+                                                        </div>
+                                                        <div class="flex justify-end">
+                                                            <button type="button" id="closeModal-edit"
+                                                                class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg mr-2">
+                                                                Close
+                                                            </button>
+                                                            <button type="submit"
+                                                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                                                                Simpan
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="w-1/2">
                                     <form action="{{ route('data_pesanan.hapus', $item->id_pesanan) }}" method="POST"
@@ -122,7 +170,7 @@
                                         @method('DELETE')
                                         <button type="submit"
                                             class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg font-semibold w-full">
-                                            Hapus 
+                                            Hapus
                                         </button>
                                     </form>
                                 </div>
@@ -137,27 +185,33 @@
     </div>
 
     <script>
-        // Get modal element
-        const modal = document.getElementById("myModal");
-        // Get button to open modal
-        const openModalBtn = document.getElementById("openModal");
-        // Get button to close modal
-        const closeModalBtn = document.getElementById("closeModal");
-
-        // Open modal when button is clicked
-        openModalBtn.addEventListener("click", function() {
-            modal.classList.remove("hidden");
+        const tambahModal = document.getElementById("tambahModal");
+        const openModal_tambah = document.getElementById("openModal-tambah");
+        const closeModal_tambah = document.getElementById("closeModal-tambah");
+        openModal_tambah.addEventListener("click", function() {
+            tambahModal.classList.remove("hidden");
         });
-
-        // Close modal when "Close" button is clicked
-        closeModalBtn.addEventListener("click", function() {
-            modal.classList.add("hidden");
+        closeModal_tambah.addEventListener("click", function() {
+            tambahModal.classList.add("hidden");
         });
-
-        // Close modal when clicking outside the modal content
         window.onclick = function(event) {
             if (event.target == modal) {
-                modal.classList.add("hidden");
+                tambahModal.classList.add("hidden");
+            }
+        };
+
+        const editModal = document.getElementById("editModal");
+        const openModal_edit = document.getElementById("openModal-edit");
+        const closeModal_edit = document.getElementById("closeModal-edit");
+        openModal_edit.addEventListener("click", function() {
+            editModal.classList.remove("hidden");
+        });
+        closeModal_edit.addEventListener("click", function() {
+            editModal.classList.add("hidden");
+        });
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                editModal.classList.add("hidden");
             }
         };
     </script>

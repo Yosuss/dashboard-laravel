@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('data_pesanan', function (Blueprint $table) {
             $table->id('id_pesanan'); // Kolom ID pesanan
             $table->date('tanggal_pesanan'); // Kolom tanggal pesanan
-            $table->decimal('total_pesanan', 10, 2); // Kolom total pesanan dengan 10 digit dan 2 desimal
+            $table->decimal('total_pesanan'); // Kolom total pesanan dengan 10 digit dan 2 desimal
             $table->timestamps(); // Kolom created_at dan updated_at
         });
     }
