@@ -52,15 +52,15 @@ class dataPesananController extends Controller
     public function edit(Request $request, $id)
     {
         $pesanan = data_pesanan::findOrFail($id);
-        return view('dashboard.data-pesanan', compact('pesanan'));
+        return view('dashboard.data-pesanan-edit', compact('pesanan'));
     }
 
     public function update(Request $request, $id)
     {
 
         $request->validate([
-            'name' => 'required',
-            'subject' => 'required',
+            'tanggal_pesanan' => 'required',
+            'total_pesanan' => 'required',
         ]);
 
         // update data ( simple )
@@ -68,6 +68,7 @@ class dataPesananController extends Controller
         // $data->tanggal_pesanan = $request->tanggal_pesanan;
         // $data->total_pesanan = $request->total_pesanan;
         // $data->update();
+        // return redirect()->route('data-pesanan')->with('success', 'Pesanan berhasil ditambahkan');
 
         $pesanan = data_pesanan::findOrFail($id);
         try {

@@ -4,6 +4,7 @@
         <!-- Dashboard Menu -->
         <div class="bg-gray-100 w-2/12 h-screen items-center justify-center text-center">
             <div class="my-10 mx-6 mt-14 font-bold text-2xl">logo</div>
+            {{-- <img src="{{ asset('aset/dashboard.png') }}" alt="" class="my-10 mx-6 mt-14 w-20"> --}}
             <div class="list gap-2 justify-center items-center m-6 border-b-2">
                 <a href="{{ url('/') }}">
                     <div class="text-left px-4 py-1 my-4 rounded-lg hover:bg-white hover:px-4 hover:py-1 hover:shadow">data
@@ -15,7 +16,7 @@
             </div>
             <div class="logout">
                 <button class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-1 shadow rounded-lg"><a
-                        href="../index.html">logout</a></button>
+                        href="{{ url('/') }}">logout</a></button>
             </div>
         </div>
         <!-- Dashboard Menu end -->
@@ -27,12 +28,12 @@
             <div class="navbar grid grid-cols-2 m-6 gap-2">
                 <div class="title">
                     <h1 class="text-2xl font-bold">restoran</h1>
-                    <h3>Lorem, ipsum dolor.</h3>
+                    <h3>manajemen data.</h3>
                 </div>
                 <div class="search grid grid-cols-3 gap-2 items-center">
-                    <input type="text" id="search" placeholder="search"
+                    <input type="search" id="search" placeholder="search"
                         class="text-left px-3 pb-1 rounded-lg bg-gray-100">
-                    <h1>logo</h1>
+                    {{-- <img src="{{ asset('aset/dashboard.png') }}" alt="" class="w-20"> --}}
                 </div>
             </div>
             <!-- Navbar end -->
@@ -109,15 +110,16 @@
                             <td class="border-2">{{ $item->total_pesanan }}</td>
                             <td class="flex">
                                 <div class="w-1/2">
-                                    <form action="{{ route('data-pesanan.edit',$item->id_pesanan) }}">
+                                    <form action="{{ route('data-pesanan.edit', $item->id_pesanan) }}">
                                         <button id="openModal-edit"
                                             class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-lg font-semibold w-full">
                                             edit
+                                            <i class="bi bi-pencil-fill"></i>
                                         </button>
                                     </form>
 
                                     <!-- Modal -->
-                                    <div id="editModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+                                    {{-- <div id="editModal{{$item->id_pesanan}}" class="fixed z-10 inset-0 overflow-y-auto hidden">
                                         <div class="flex items-center justify-center min-h-screen">
                                             <!-- Background overlay -->
                                             <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -164,7 +166,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                                 <div class="w-1/2">
@@ -175,6 +177,8 @@
                                         <button type="submit"
                                             class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg font-semibold w-full">
                                             Hapus
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
                                         </button>
                                     </form>
                                 </div>

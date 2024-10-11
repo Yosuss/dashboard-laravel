@@ -6,7 +6,10 @@
         <h2 class="text-2xl font-bold mb-6 text-center">Tambah Pesanan</h2>
         <form action="{{ route('data-pesanan.update',$pesanan->id_pesanan) }}" method="POST">
             @csrf
-            @method('PUT')
+            <div class="mb-4">
+                <label for="id_pesanan" class="block text-sm font-medium text-gray-700">id Pesanan</label>
+                <div name="id_pesanan" id="id_pesanan">{{ $pesanan->id_pesanan }}</div>
+            </div>
             <div class="mb-4">
                 <label for="tanggal_pesanan" class="block text-sm font-medium text-gray-700">Tanggal Pesanan</label>
                 <input type="date" name="tanggal_pesanan" id="tanggal_pesanan" required value="{{ $pesanan->tanggal_pesanan }}">
