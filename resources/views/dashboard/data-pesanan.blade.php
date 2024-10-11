@@ -25,72 +25,11 @@
         <div class="main-dashboard w-10/12 bg-white rounded-3xl">
 
             <!-- Navbar -->
-            <div class="navbar grid grid-cols-2 m-6 gap-2">
-                <div class="title">
-                    <h1 class="text-2xl font-bold">restoran</h1>
-                    <h3>manajemen data.</h3>
-                </div>
-                <div class="search grid grid-cols-3 gap-2 items-center">
-                    <input type="search" id="search" placeholder="search"
-                        class="text-left px-3 pb-1 rounded-lg bg-gray-100">
-                    {{-- <img src="{{ asset('aset/dashboard.png') }}" alt="" class="w-20"> --}}
-                </div>
-            </div>
+            @include('component.navbar')
             <!-- Navbar end -->
 
             <!-- Dashboard field -->
-            <!-- Tombol untuk memunculkan modal -->
-            <div class="tambah mx-4 my-2">
-                <button id="openModal-tambah"
-                    class="bg-green-400 hover:bg-green-700 shadow font-bold text-white px-4 py-1 rounded-lg">
-                    Tambah
-                </button>
-            </div>
-            <!-- Modal -->
-            <div id="tambahModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
-                <div class="flex items-center justify-center min-h-screen">
-                    <!-- Background overlay -->
-                    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                    </div>
-                    <!-- Modal content -->
-                    <div
-                        class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
-                        <div class="bg-white p-6 xl justify-center">
-                            <h2 class="font-bold text-3xl mb-4">Tambah Data</h2>
-                            <!-- Form dalam modal -->
-                            <form action="{{ route('data-pesanan.tambah') }}" method="POST" class="">
-                                @csrf
-                                <div class="mb-4">
-                                    <label for="tanggal_pesanan" class="block text-xl font-medium text-gray-700">Tanggal
-                                        Pesanan</label>
-                                    <input type="date" name="tanggal_pesanan" id="tanggal_pesanan"
-                                        class="mt-1 block w-full py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xl"
-                                        required>
-                                </div>
-                                <div class="mb-4">
-                                    <label for="total_pesanan" class="block text-xl font-medium text-gray-700">Total
-                                        Pesanan</label>
-                                    <input type="number" name="total_pesanan" id="total_pesanan"
-                                        class="mt-1 block w-full py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        required>
-                                </div>
-                                <div class="flex justify-end">
-                                    <button type="button" id="closeModal-tambah"
-                                        class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg mr-2">
-                                        Close
-                                    </button>
-                                    <button type="submit"
-                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                                        Simpan
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            @include('component.tambah-pesanan')
 
             <div class="form p-4">
                 <table action="" class="data-pesanan text-center border-2 w-full">
@@ -110,77 +49,10 @@
                             <td class="border-2">{{ $item->total_pesanan }}</td>
                             <td class="flex">
                                 <div class="w-1/2">
-                                    <form action="{{ route('data-pesanan.edit', $item->id_pesanan) }}">
-                                        <button id="openModal-edit"
-                                            class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-lg font-semibold w-full">
-                                            edit
-                                            <i class="bi bi-pencil-fill"></i>
-                                        </button>
-                                    </form>
-
-                                    <!-- Modal -->
-                                    {{-- <div id="editModal{{$item->id_pesanan}}" class="fixed z-10 inset-0 overflow-y-auto hidden">
-                                        <div class="flex items-center justify-center min-h-screen">
-                                            <!-- Background overlay -->
-                                            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                                            </div>
-                                            <!-- Modal content -->
-                                            <div
-                                                class="bg-white rounded-lg text-start overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
-                                                <div class="bg-white p-6 xl justify-center">
-                                                    <h2 class="font-bold text-3xl mb-4">edit Data</h2>
-                                                    <!-- Form dalam modal -->
-                                                    <form action="{{ route('data-pesanan.update', $item->id_pesanan) }}" method="POST"
-                                                        class="">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="mb-4">
-                                                            <label for="tanggal_pesanan"
-                                                                class="block text-xl font-medium text-gray-700">Tanggal
-                                                                Pesanan</label>
-                                                            <input type="date" name="tanggal_pesanan"
-                                                                id="tanggal_pesanan"
-                                                                class="mt-1 block w-full py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xl"
-                                                                required value="{{$item->tanggal_pesanan}}">
-                                                        </div>
-                                                        <div class="mb-4">
-                                                            <label for="total_pesanan"
-                                                                class="block text-xl font-medium text-gray-700">Total
-                                                                Pesanan</label>
-                                                            <input type="number" name="total_pesanan" id="total_pesanan"
-                                                                class="mt-1 block w-full py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                                required value="{{$item->total_pesanan}}">
-                                                        </div>
-                                                        <div class="flex justify-end">
-                                                            <button type="button" id="closeModal-edit"
-                                                                class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg mr-2">
-                                                                Close
-                                                            </button>
-                                                            <button type="submit"
-                                                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                                                                Simpan
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-
+                                    @include('component.edit-pesanan')
                                 </div>
                                 <div class="w-1/2">
-                                    <form action="{{ route('data_pesanan.hapus', $item->id_pesanan) }}" method="POST"
-                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesanan ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg font-semibold w-full">
-                                            Hapus
-                                            <i class="bi bi-trash-fill"></i>
-                                        </button>
-                                        </button>
-                                    </form>
+                                    @include('component.btn-hapus')
                                 </div>
                             </td>
                         </tbody>
@@ -191,36 +63,4 @@
         </div>
         <!-- Main Dashboard end -->
     </div>
-
-    <script>
-        const tambahModal = document.getElementById("tambahModal");
-        const openModal_tambah = document.getElementById("openModal-tambah");
-        const closeModal_tambah = document.getElementById("closeModal-tambah");
-        openModal_tambah.addEventListener("click", function() {
-            tambahModal.classList.remove("hidden");
-        });
-        closeModal_tambah.addEventListener("click", function() {
-            tambahModal.classList.add("hidden");
-        });
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                tambahModal.classList.add("hidden");
-            }
-        };
-
-        const editModal = document.getElementById("editModal");
-        const openModal_edit = document.getElementById("openModal-edit");
-        const closeModal_edit = document.getElementById("closeModal-edit");
-        openModal_edit.addEventListener("click", function() {
-            editModal.classList.remove("hidden");
-        });
-        closeModal_edit.addEventListener("click", function() {
-            editModal.classList.add("hidden");
-        });
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                editModal.classList.add("hidden");
-            }
-        };
-    </script>
 @endsection

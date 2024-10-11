@@ -15,7 +15,7 @@
             </div>
             <div class="logout">
                 <button class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-1 shadow rounded-lg"><a
-                        href="../index.html">logout</a></button>
+                        href="{{ url('/') }}">logout</a></button>
             </div>
         </div>
         <!-- Dashboard Menu end -->
@@ -42,7 +42,7 @@
                 <button class="bg-green-400 hover:bg-green-700 shadow font-bold text-white px-4 py-1 rounded-lg"><a
                         href="./tambah/tambah-menu.html">tambah</a></button>
             </div>
-            <div class="menu grid grid-cols-4 gap-4 mx-4">
+            {{-- <div class="menu grid grid-cols-4 gap-4 mx-4">
 
                 <div class="data-menu capitalize px-4 py-4 shadow bg-gray-100 rounded-lg">
                     <a href="./detail/detail-menu.html"><img src="{{ asset('aset/fried-chicken.jpg') }}" alt="ayam"
@@ -63,7 +63,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
             <!-- Dashboard field end -->
 
         </div>
