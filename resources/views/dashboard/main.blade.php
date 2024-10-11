@@ -14,10 +14,12 @@
                         datapesanan</div>
                 </a>
             </div>
-            <div class="logout">
-                <button class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-1 shadow rounded-lg"><a
-                        href="{{ url('/') }}">logout</a></button>
-            </div>
+            <a href="{{ url('/login') }}">
+                <div class="logout">
+                    <button
+                        class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-1 shadow rounded-lg">logout</button>
+                </div>
+            </a>
         </div>
         <!-- Dashboard Menu end -->
 
