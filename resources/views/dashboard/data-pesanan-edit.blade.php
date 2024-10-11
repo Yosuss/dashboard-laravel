@@ -24,8 +24,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="harga" class="block text-sm font-medium text-gray-700">harga</label>
-                    <input type="number" name="harga" id="harga" required
-                        value="{{ $pesanan->harga }}">
+                    <input type="number" name="harga" id="harga" required value="{{ $pesanan->harga }}">
                 </div>
                 <div class="btn flex gap-2">
                     <a href="{{ route('data-pesanan') }}"
