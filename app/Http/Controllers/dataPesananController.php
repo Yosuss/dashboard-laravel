@@ -30,6 +30,7 @@ class dataPesananController extends Controller
         $request->validate([
             'tanggal_pesanan' => 'required',
             'total_pesanan' => 'required',
+            'harga' => 'required',
         ]);
 
         // simpan data ( simple )
@@ -42,6 +43,7 @@ class dataPesananController extends Controller
         $data = ([
             'tanggal_pesanan' => $request->tanggal_pesanan,
             'total_pesanan' => $request->total_pesanan,
+            'harga' => $request->harga,
         ]);
         DB::table('data_pesanan')->insert($data);
 
@@ -61,6 +63,7 @@ class dataPesananController extends Controller
         $request->validate([
             'tanggal_pesanan' => 'required',
             'total_pesanan' => 'required',
+            'harga' => 'required',
         ]);
 
         // update data ( simple )
@@ -74,6 +77,7 @@ class dataPesananController extends Controller
         try {
             $pesanan->tanggal_pesanan = $request->input('tanggal_pesanan');
             $pesanan->total_pesanan = $request->input('total_pesanan');
+            $pesanan->harga = $request->input('harga');
             $pesanan->save();
             return redirect()->route('data-pesanan');
         } catch (\Exception $e) {

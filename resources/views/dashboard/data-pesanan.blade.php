@@ -37,6 +37,7 @@
                         <th class="font-bold border-2 py-1">no</th>
                         <th class="font-bold border-2 py-1">id_pesanan</th>
                         <th class="font-bold border-2 py-1">tanggal pesanan</th>
+                        <th class="font-bold border-2 py-1">harga</th>
                         <th class="font-bold border-2 py-1">total pesanan</th>
                         <th colspan="2" class="font-bold border-2 py-1">Aksi</th>
                     </thead>
@@ -46,6 +47,7 @@
                             <td class="border-2">{{ $loop->iteration }}</td>
                             <td class="border-2">{{ $item->id_pesanan }}</td>
                             <td class="border-2">{{ $item->tanggal_pesanan }}</td>
+                            <td class="border-2">{{ $item->harga }}</td>
                             <td class="border-2">{{ $item->total_pesanan }}</td>
                             <td class="flex">
                                 <div class="w-1/2">

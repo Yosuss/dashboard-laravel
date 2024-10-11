@@ -22,6 +22,11 @@
                     <input type="number" name="total_pesanan" id="total_pesanan" required
                         value="{{ $pesanan->total_pesanan }}">
                 </div>
+                <div class="mb-4">
+                    <label for="harga" class="block text-sm font-medium text-gray-700">harga</label>
+                    <input type="number" name="harga" id="harga" required
+                        value="{{ $pesanan->harga }}">
+                </div>
                 <div class="btn flex gap-2">
                     <a href="{{ route('data-pesanan') }}"
                         class="w-full flex justify-center items-center bg-gray-400 text-white p-2 rounded-md hover:bg-gray-700">

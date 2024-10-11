@@ -18,6 +18,7 @@ class data_pesanan extends Model
         protected $fillable = [
             'tanggal_pesanan',
             'total_pesanan',
+            'harga',
         ];
     
         // Jika tidak menggunakan timestamps, nonaktifkan
